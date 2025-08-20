@@ -1,7 +1,18 @@
-def function(x, f,epsilon=1e-6):
-    f_prime = (f(x + epsilon)-f(x))/epsilon
-    f_second_derivative = (f_prime(x + epsilon)-f_prime(x))/epsilon ???????
-    return slope = f_prime/f_second_derivative
-for t in range(1, 100):
-    return function
-if f_prime/f_second_derivative < epsilon :
+def deriv(f, x, eps = 1e-16):
+    # if x < 5:
+    #    raise RuntimeError("fake error")
+    return (f(x+eps) - f(x)) / eps
+
+
+def deriv2(f, x, eps = 1e-16):
+    return (deriv(f, x+eps, eps) - deriv(f, x, eps)) / eps
+
+
+def optimize(x0, f, tol =1e-4):
+    x_new = x0 - deriv(f, x0)/    deriv2(f, x0)
+  x = x0
+    while abs(x_new - x) < tol
+        x = x_new
+        x_new = x0 - deriv(f, x0) / deriv2(f, x0)
+    return {"x": x_new,
+            'value': f(x_new)}
